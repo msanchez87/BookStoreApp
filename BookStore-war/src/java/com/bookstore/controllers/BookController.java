@@ -9,6 +9,8 @@ import com.bookstore.entity.Book;
 import com.bookstore.process.BookFacade;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -25,10 +27,20 @@ public class BookController implements java.io.Serializable {
     private BookFacade bookFacade;
 
     private Book current;
+    private List<Book> books;
 
     @PostConstruct
     public void initialize() {
         this.current = new Book();
+        this.books = bookFacade.findAll();
+    }
+
+    public List<Book> getBooks() {
+        return bookFacade.findAll();
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
     public Book getCurrent() {
@@ -41,14 +53,12 @@ public class BookController implements java.io.Serializable {
 
     public void save() {
         bookFacade.create(current);
+        setCurrent(new Book());
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Datos guardados"));
     }
 
     public void delete() {
         bookFacade.delete(current);
-    }
-
-    public List<Book> findAll() {
-        return bookFacade.findAll();
     }
 
 }
