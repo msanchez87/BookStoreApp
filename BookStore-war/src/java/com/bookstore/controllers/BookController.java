@@ -36,7 +36,8 @@ public class BookController implements java.io.Serializable {
     }
 
     public List<Book> getBooks() {
-        return bookFacade.findAll();
+        //return bookFacade.findAll();
+        return this.books;
     }
 
     public void setBooks(List<Book> books) {

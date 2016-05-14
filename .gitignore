@@ -1,3 +1,9 @@
 /BookStore-ejb/nbproject/private/
 /nbproject/private/
 /BookStore-war/nbproject/private/
+/BookStore-ejb/build/
+/BookStore-ejb/dist/
+/BookStore-war/build/
+/dist/
+/build/
+/BookStore-war/dist/

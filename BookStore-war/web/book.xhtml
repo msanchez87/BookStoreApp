@@ -65,10 +65,16 @@
                 <p:column headerText="Illustrations">
                     <h:outputLabel value="#{book.illustrations}"/>
                 </p:column>
+                <p:column>
+                    <p:commandButton value="Eliminar" onclick="PF('cd').show()" type="button"/>  
+                </p:column>
                 <f:facet name="footer">
                     <h:outputLabel value="Total de registros: #{bookController.books.size()}"/>
                 </f:facet>
             </p:dataTable>
+            <p:dialog header="Eliminar registro" widgetVar="cd">
+                <h:outputLabel value="Esta seguro de eliminar el registro"/>
+            </p:dialog>
         </h:form>
     </ui:define>
 
