@@ -58,8 +58,9 @@ public class BookController implements java.io.Serializable {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Datos guardados"));
     }
 
-    public void delete() {
+    public void delete() {        
         bookFacade.delete(current);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Se elimino el registro"));
     }
 
 }

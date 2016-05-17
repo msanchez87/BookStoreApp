@@ -48,7 +48,7 @@ public abstract class AbstractFacade<Entity, PrimaryKey> {
     }
 
     public void delete(Entity entity) {
-        entityManager.remove(entity);
+        entityManager.remove(entityManager.merge(entity));
     }
 
 }

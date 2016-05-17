@@ -40,7 +40,10 @@
                 <h:panelGroup/>
                 <p:commandButton value="Save" action="#{bookController.save()}" update="@form"/>
             </h:panelGrid>
-            <p:dataTable var="book" value="#{bookController.books}">
+        </h:form>
+
+        <h:form  id="frmBooks">
+            <p:dataTable id="tblBooks" var="book" value="#{bookController.books}">
                 <f:facet name="header">
                     <h:outputLabel value="Lista de libros"/>                    
                 </f:facet>
@@ -65,16 +68,25 @@
                 <p:column headerText="Illustrations">
                     <h:outputLabel value="#{book.illustrations}"/>
                 </p:column>
-                <p:column>
-                    <p:commandButton value="Eliminar" onclick="PF('cd').show()" type="button"/>  
+                <p:column headerText="Eliminar">
+                    <p:commandButton value="Eliminar" oncomplete="PF('cd').show()">
+                        <f:setPropertyActionListener value="#{book}" target="#{bookController.current}"/>
+                    </p:commandButton>  
                 </p:column>
                 <f:facet name="footer">
                     <h:outputLabel value="Total de registros: #{bookController.books.size()}"/>
                 </f:facet>
             </p:dataTable>
-            <p:dialog header="Eliminar registro" widgetVar="cd">
-                <h:outputLabel value="Esta seguro de eliminar el registro"/>
-            </p:dialog>
+            <p:confirmDialog message="¿Esta seguro de eliminar el libro?" header="Eliminar contacto" severity="alert" widgetVar="cd">
+                <h:form>
+                    <p:growl id="pralMessage" showSummary="true" showDetail="true" globalOnly="true"/>
+
+                    <p:commandButton value="Si" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" 
+                                     actionListener="#{bookController.delete()}" update="pralMessage frmBooks:tblBooks" oncomplete="PF('cd').hide()" />
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" 
+                                     onclick="PF('cd').hide();" />
+                </h:form>                
+            </p:confirmDialog>
         </h:form>
     </ui:define>
 
