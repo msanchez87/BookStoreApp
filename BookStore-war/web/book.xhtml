@@ -38,11 +38,11 @@
                 <p:inputText value="#{bookController.current.illustrations}"/>
                 <h:panelGroup/>
                 <h:panelGroup/>
-                <p:commandButton value="Save" action="#{bookController.save()}" update="@form"/>
+                <p:commandButton value="Save" action="#{bookController.save()}" update="@form frmBooks:tblBooks"/>
             </h:panelGrid>
         </h:form>
 
-        <h:form  id="frmBooks">
+        <h:form id="frmBooks">
             <p:dataTable id="tblBooks" var="book" value="#{bookController.books}">
                 <f:facet name="header">
                     <h:outputLabel value="Lista de libros"/>                    

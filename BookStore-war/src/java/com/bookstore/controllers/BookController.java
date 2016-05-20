@@ -36,8 +36,8 @@ public class BookController implements java.io.Serializable {
     }
 
     public List<Book> getBooks() {
-        //return bookFacade.findAll();
-        return this.books;
+        return bookFacade.findAll();
+        //return this.books;
     }
 
     public void setBooks(List<Book> books) {
@@ -61,6 +61,7 @@ public class BookController implements java.io.Serializable {
     public void delete() {        
         bookFacade.delete(current);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Se elimino el registro"));
+        books = bookFacade.findAll();
     }
 
 }
